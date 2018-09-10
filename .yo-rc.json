@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.yupi.ecsa.timesheet",
+      "nativeLanguage": "es"
+    },
+    "jhipsterVersion": "5.3.1",
+    "applicationType": "monolith",
+    "baseName": "timesheet",
+    "packageName": "com.yupi.ecsa.timesheet",
+    "packageFolder": "com/yupi/ecsa/timesheet",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZWNkMDZmZDMxZDExZTk1ZGNiODJlNWFjMjVkZGNmNGY5YTc1NjM4ZTUyN2Q5ZjAzZjZhZWIwZTQ1ZDVlOWIyN2UyMjIwYTEzZDY1YzY5Zjc5NWRmN2QzMWQwYzk5Njg4YzVmMmMyNjEzNmRlZmIwZWMxMzA1NmZjMGNlMDE3NmY=",
+    "clientFramework": "react",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": true,
+    "nativeLanguage": "es",
+    "languages": [
+      "es"
+    ]
+  }
+}
