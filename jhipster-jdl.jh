@@ -1,0 +1,49 @@
+
+entity Partner{
+	documentType String required,
+	documentNumber String,
+    name String required,
+    active Boolean required,
+    odooId Long required
+}
+
+entity Project{
+	active Boolean required,
+	name String required,
+    odooId Long required
+}
+
+entity Task {
+	name String required,
+    plannedHours BigDecimal,
+    odooId Long required,
+    kanbanState String,
+    active Boolean required,
+    dateDeadline LocalDate
+}
+
+entity Timesheet{
+	date LocalDate required,
+    name String required,
+    unitAmount BigDecimal required,
+    odooId Long,
+}
+
+skipClient Project
+skipClient Partner
+skipClient Task
+
+relationship ManyToOne {
+    Task{project} to Project
+    Task{user} to User
+    Timesheet{user} to User
+    Timesheet{task} to Task
+    Project{partner} to Partner
+}
+
+relationship OneToOne{
+	Partner{user} to User{partner}
+}
+
+// Set service options to all except few
+service all with serviceImpl

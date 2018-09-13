@@ -1,0 +1,44 @@
+{
+    "name": "Project",
+    "fields": [
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "odooId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "partner",
+            "otherEntityName": "partner",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180913064233",
+    "entityTableName": "project",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "skipClient": true
+}

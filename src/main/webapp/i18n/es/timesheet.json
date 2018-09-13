@@ -1,0 +1,27 @@
+
+{
+    "timesheetApp": {
+        "timesheet" : {
+            "home": {
+                "title": "Timesheets",
+                "createLabel": "Crear nuevo Timesheet",
+                "createOrEditLabel": "Crear o editar Timesheet"
+            },
+            "created": "Un nuevo Timesheet ha sido creado con el identificador {{ param }}",
+            "updated": "Un Timesheet ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Timesheet ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Timesheet {{ id }}?"
+            },
+            "detail": {
+                "title": "Timesheet"
+            },
+            "date": "Date",
+            "name": "Name",
+            "unitAmount": "Unit Amount",
+            "odooId": "Odoo Id",
+            "user": "User",
+            "task": "Task"
+        }
+    }
+}
