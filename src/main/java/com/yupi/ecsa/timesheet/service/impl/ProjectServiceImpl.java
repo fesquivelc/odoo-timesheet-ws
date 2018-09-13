@@ -6,6 +6,8 @@ import com.yupi.ecsa.timesheet.repository.ProjectRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,9 +49,18 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional(readOnly = true)
     public List<Project> findAll() {
         log.debug("Request to get all Projects");
-        return projectRepository.findAll();
+        return projectRepository.findAllWithEagerRelationships();
     }
 
+    /**
+     * Get all the Project with eager load of many-to-many relationships.
+     *
+     * @return the list of entities
+     */
+    public Page<Project> findAllWithEagerRelationships(Pageable pageable) {
+        return projectRepository.findAllWithEagerRelationships(pageable);
+    }
+    
 
     /**
      * Get one project by id.
@@ -61,7 +72,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional(readOnly = true)
     public Optional<Project> findOne(Long id) {
         log.debug("Request to get Project : {}", id);
-        return projectRepository.findById(id);
+        return projectRepository.findOneWithEagerRelationships(id);
     }
 
     /**

@@ -26,12 +26,8 @@ entity Timesheet{
 	date LocalDate required,
     name String required,
     unitAmount BigDecimal required,
-    odooId Long,
+    odooId Long
 }
-
-skipClient Project
-skipClient Partner
-skipClient Task
 
 relationship ManyToOne {
     Task{project} to Project
@@ -43,6 +39,10 @@ relationship ManyToOne {
 
 relationship OneToOne{
 	Partner{user} to User{partner}
+}
+
+relationship ManyToMany {
+    Project{users} to User{projects}
 }
 
 // Set service options to all except few

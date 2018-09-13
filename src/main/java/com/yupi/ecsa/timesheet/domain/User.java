@@ -5,6 +5,8 @@ import com.yupi.ecsa.timesheet.config.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.ManyToAny;
+
 import javax.validation.constraints.Email;
 
 import javax.persistence.*;
@@ -92,6 +94,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
+
+    @ManyToMany(mappedBy = "users")
+    private Set<Project> projects = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -196,6 +201,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
     @Override

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { Translate, ICrudGetAllAction, TextFormat } from 'react-jhipster';
+import { ICrudGetAllAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -24,37 +24,22 @@ export class Timesheet extends React.Component<ITimesheetProps> {
     return (
       <div>
         <h2 id="timesheet-heading">
-          <Translate contentKey="timesheetApp.timesheet.home.title">Timesheets</Translate>
+          Timesheets
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />&nbsp;
-            <Translate contentKey="timesheetApp.timesheet.home.createLabel">Create new Timesheet</Translate>
+            <FontAwesomeIcon icon="plus" />&nbsp; Create new Timesheet
           </Link>
         </h2>
         <div className="table-responsive">
           <Table responsive>
             <thead>
               <tr>
-                <th>
-                  <Translate contentKey="global.field.id">ID</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="timesheetApp.timesheet.date">Date</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="timesheetApp.timesheet.name">Name</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="timesheetApp.timesheet.unitAmount">Unit Amount</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="timesheetApp.timesheet.odooId">Odoo Id</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="timesheetApp.timesheet.user">User</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="timesheetApp.timesheet.task">Task</Translate>
-                </th>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Unit Amount</th>
+                <th>Odoo Id</th>
+                <th>User</th>
+                <th>Task</th>
                 <th />
               </tr>
             </thead>
@@ -77,22 +62,13 @@ export class Timesheet extends React.Component<ITimesheetProps> {
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${timesheet.id}`} color="info" size="sm">
-                        <FontAwesomeIcon icon="eye" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.view">View</Translate>
-                        </span>
+                        <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
                       </Button>
                       <Button tag={Link} to={`${match.url}/${timesheet.id}/edit`} color="primary" size="sm">
-                        <FontAwesomeIcon icon="pencil-alt" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.edit">Edit</Translate>
-                        </span>
+                        <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
                       </Button>
                       <Button tag={Link} to={`${match.url}/${timesheet.id}/delete`} color="danger" size="sm">
-                        <FontAwesomeIcon icon="trash" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.delete">Delete</Translate>
-                        </span>
+                        <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
                       </Button>
                     </div>
                   </td>

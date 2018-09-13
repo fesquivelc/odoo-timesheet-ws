@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
-import { Translate, ICrudGetAction, ICrudDeleteAction } from 'react-jhipster';
+import { ICrudGetAction, ICrudDeleteAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { ITimesheet } from 'app/shared/model/timesheet.model';
@@ -30,22 +30,14 @@ export class TimesheetDeleteDialog extends React.Component<ITimesheetDeleteDialo
     const { timesheetEntity } = this.props;
     return (
       <Modal isOpen toggle={this.handleClose}>
-        <ModalHeader toggle={this.handleClose}>
-          <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
-        </ModalHeader>
-        <ModalBody id="timesheetApp.timesheet.delete.question">
-          <Translate contentKey="timesheetApp.timesheet.delete.question" interpolate={{ id: timesheetEntity.id }}>
-            Are you sure you want to delete this Timesheet?
-          </Translate>
-        </ModalBody>
+        <ModalHeader toggle={this.handleClose}>Confirm delete operation</ModalHeader>
+        <ModalBody id="pruebinhaApp.timesheet.delete.question">Are you sure you want to delete this Timesheet?</ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={this.handleClose}>
-            <FontAwesomeIcon icon="ban" />&nbsp;
-            <Translate contentKey="entity.action.cancel">Cancel</Translate>
+            <FontAwesomeIcon icon="ban" />&nbsp; Cancel
           </Button>
           <Button id="jhi-confirm-delete-timesheet" color="danger" onClick={this.confirmDelete}>
-            <FontAwesomeIcon icon="trash" />&nbsp;
-            <Translate contentKey="entity.action.delete">Delete</Translate>
+            <FontAwesomeIcon icon="trash" />&nbsp; Delete
           </Button>
         </ModalFooter>
       </Modal>

@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import { loadingBarReducer as loadingBar } from 'react-redux-loading-bar';
 
-import locale, { LocaleState } from './locale';
 import authentication, { AuthenticationState } from './authentication';
 import applicationProfile, { ApplicationProfileState } from './application-profile';
 
@@ -13,6 +12,18 @@ import password, { PasswordState } from 'app/modules/account/password/password.r
 import settings, { SettingsState } from 'app/modules/account/settings/settings.reducer';
 import passwordReset, { PasswordResetState } from 'app/modules/account/password-reset/password-reset.reducer';
 // prettier-ignore
+import partner, {
+  PartnerState
+} from 'app/entities/partner/partner.reducer';
+// prettier-ignore
+import project, {
+  ProjectState
+} from 'app/entities/project/project.reducer';
+// prettier-ignore
+import task, {
+  TaskState
+} from 'app/entities/task/task.reducer';
+// prettier-ignore
 import timesheet, {
   TimesheetState
 } from 'app/entities/timesheet/timesheet.reducer';
@@ -20,7 +31,6 @@ import timesheet, {
 
 export interface IRootState {
   readonly authentication: AuthenticationState;
-  readonly locale: LocaleState;
   readonly applicationProfile: ApplicationProfileState;
   readonly administration: AdministrationState;
   readonly userManagement: UserManagementState;
@@ -29,6 +39,9 @@ export interface IRootState {
   readonly passwordReset: PasswordResetState;
   readonly password: PasswordState;
   readonly settings: SettingsState;
+  readonly partner: PartnerState;
+  readonly project: ProjectState;
+  readonly task: TaskState;
   readonly timesheet: TimesheetState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
@@ -36,7 +49,6 @@ export interface IRootState {
 
 const rootReducer = combineReducers<IRootState>({
   authentication,
-  locale,
   applicationProfile,
   administration,
   userManagement,
@@ -45,6 +57,9 @@ const rootReducer = combineReducers<IRootState>({
   passwordReset,
   password,
   settings,
+  partner,
+  project,
+  task,
   timesheet,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar

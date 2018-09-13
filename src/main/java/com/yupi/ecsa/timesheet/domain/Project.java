@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -37,6 +39,12 @@ public class Project implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("")
     private Partner partner;
+
+    @ManyToMany
+    @JoinTable(name = "project_users",
+               joinColumns = @JoinColumn(name = "projects_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"))
+    private Set<User> users = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -97,6 +105,31 @@ public class Project implements Serializable {
 
     public void setPartner(Partner partner) {
         this.partner = partner;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public Project users(Set<User> users) {
+        this.users = users;
+        return this;
+    }
+
+    public Project addUsers(User user) {
+        this.users.add(user);
+        user.getProjects().add(this);
+        return this;
+    }
+
+    public Project removeUsers(User user) {
+        this.users.remove(user);
+        user.getProjects().remove(this);
+        return this;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

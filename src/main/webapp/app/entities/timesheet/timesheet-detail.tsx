@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { Translate, ICrudGetAction, TextFormat } from 'react-jhipster';
+import { ICrudGetAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -25,55 +25,37 @@ export class TimesheetDetail extends React.Component<ITimesheetDetailProps> {
       <Row>
         <Col md="8">
           <h2>
-            <Translate contentKey="timesheetApp.timesheet.detail.title">Timesheet</Translate> [<b>{timesheetEntity.id}</b>]
+            Timesheet [<b>{timesheetEntity.id}</b>]
           </h2>
           <dl className="jh-entity-details">
             <dt>
-              <span id="date">
-                <Translate contentKey="timesheetApp.timesheet.date">Date</Translate>
-              </span>
+              <span id="date">Date</span>
             </dt>
             <dd>
               <TextFormat value={timesheetEntity.date} type="date" format={APP_LOCAL_DATE_FORMAT} />
             </dd>
             <dt>
-              <span id="name">
-                <Translate contentKey="timesheetApp.timesheet.name">Name</Translate>
-              </span>
+              <span id="name">Name</span>
             </dt>
             <dd>{timesheetEntity.name}</dd>
             <dt>
-              <span id="unitAmount">
-                <Translate contentKey="timesheetApp.timesheet.unitAmount">Unit Amount</Translate>
-              </span>
+              <span id="unitAmount">Unit Amount</span>
             </dt>
             <dd>{timesheetEntity.unitAmount}</dd>
             <dt>
-              <span id="odooId">
-                <Translate contentKey="timesheetApp.timesheet.odooId">Odoo Id</Translate>
-              </span>
+              <span id="odooId">Odoo Id</span>
             </dt>
             <dd>{timesheetEntity.odooId}</dd>
-            <dt>
-              <Translate contentKey="timesheetApp.timesheet.user">User</Translate>
-            </dt>
+            <dt>User</dt>
             <dd>{timesheetEntity.user ? timesheetEntity.user.id : ''}</dd>
-            <dt>
-              <Translate contentKey="timesheetApp.timesheet.task">Task</Translate>
-            </dt>
+            <dt>Task</dt>
             <dd>{timesheetEntity.task ? timesheetEntity.task.id : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/timesheet" replace color="info">
-            <FontAwesomeIcon icon="arrow-left" />{' '}
-            <span className="d-none d-md-inline">
-              <Translate contentKey="entity.action.back">Back</Translate>
-            </span>
+            <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
           </Button>&nbsp;
           <Button tag={Link} to={`/entity/timesheet/${timesheetEntity.id}/edit`} replace color="primary">
-            <FontAwesomeIcon icon="pencil-alt" />{' '}
-            <span className="d-none d-md-inline">
-              <Translate contentKey="entity.action.edit">Edit</Translate>
-            </span>
+            <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
           </Button>
         </Col>
       </Row>

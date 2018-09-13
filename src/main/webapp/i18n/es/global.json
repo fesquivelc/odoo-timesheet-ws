@@ -8,6 +8,7 @@
             "entities": {
                 "main": "Entidades",
                 "timesheet": "Timesheet",
+                "project": "Project",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

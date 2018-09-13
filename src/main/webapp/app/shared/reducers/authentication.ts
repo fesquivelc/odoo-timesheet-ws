@@ -2,7 +2,6 @@ import axios from 'axios';
 import { Storage } from 'react-jhipster';
 
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
-import { setLocale } from 'app/shared/reducers/locale';
 
 export const ACTION_TYPES = {
   LOGIN: 'authentication/LOGIN',
@@ -117,12 +116,7 @@ export const login = (username, password, rememberMe = false) => async (dispatch
       Storage.session.set(AUTH_TOKEN_KEY, jwt);
     }
   }
-  await dispatch(getSession());
-
-  const account = getState().authentication.account;
-  if (account && account.langKey) {
-    await dispatch(setLocale(account.langKey));
-  }
+  dispatch(getSession());
 };
 
 export const clearAuthToken = () => {
