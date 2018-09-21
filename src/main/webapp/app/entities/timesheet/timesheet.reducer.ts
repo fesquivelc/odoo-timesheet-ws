@@ -8,6 +8,7 @@ import { ITimesheet, defaultValue } from 'app/shared/model/timesheet.model';
 
 export const ACTION_TYPES = {
   FETCH_TIMESHEET_LIST: 'timesheet/FETCH_TIMESHEET_LIST',
+  FETCH_PROJECT_TIMESHEET_LIST: 'timesheet/FETCH_PROJECT_TIMESHEET_LIST',
   FETCH_TIMESHEET: 'timesheet/FETCH_TIMESHEET',
   CREATE_TIMESHEET: 'timesheet/CREATE_TIMESHEET',
   UPDATE_TIMESHEET: 'timesheet/UPDATE_TIMESHEET',
@@ -32,6 +33,7 @@ export default (state: TimesheetState = initialState, action): TimesheetState =>
   switch (action.type) {
     case REQUEST(ACTION_TYPES.FETCH_TIMESHEET_LIST):
     case REQUEST(ACTION_TYPES.FETCH_TIMESHEET):
+    case REQUEST(ACTION_TYPES.FETCH_PROJECT_TIMESHEET_LIST):
       return {
         ...state,
         errorMessage: null,
@@ -49,6 +51,7 @@ export default (state: TimesheetState = initialState, action): TimesheetState =>
       };
     case FAILURE(ACTION_TYPES.FETCH_TIMESHEET_LIST):
     case FAILURE(ACTION_TYPES.FETCH_TIMESHEET):
+    case FAILURE(ACTION_TYPES.FETCH_PROJECT_TIMESHEET_LIST):
     case FAILURE(ACTION_TYPES.CREATE_TIMESHEET):
     case FAILURE(ACTION_TYPES.UPDATE_TIMESHEET):
     case FAILURE(ACTION_TYPES.DELETE_TIMESHEET):
@@ -66,6 +69,12 @@ export default (state: TimesheetState = initialState, action): TimesheetState =>
         entities: action.payload.data
       };
     case SUCCESS(ACTION_TYPES.FETCH_TIMESHEET):
+      return {
+        ...state,
+        loading: false,
+        entity: action.payload.data
+      };
+    case SUCCESS(ACTION_TYPES.FETCH_PROJECT_TIMESHEET_LIST):
       return {
         ...state,
         loading: false,
@@ -104,6 +113,14 @@ export const getEntities: ICrudGetAllAction<ITimesheet> = (page, size, sort) => 
   payload: axios.get<ITimesheet>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
 });
 
+export const getEntitiesByProject: ICrudGetAction<ITimesheet> = projectId => {
+  const requestUrl = `${apiUrl}/q/byProject?projectId=${projectId}`;
+  return {
+    type: ACTION_TYPES.FETCH_PROJECT_TIMESHEET_LIST,
+    payload: axios.get<ITimesheet>(requestUrl)
+  }
+};
+
 export const getEntity: ICrudGetAction<ITimesheet> = id => {
   const requestUrl = `${apiUrl}/${id}`;
   return {
@@ -139,6 +156,8 @@ export const deleteEntity: ICrudDeleteAction<ITimesheet> = id => async dispatch 
   dispatch(getEntities());
   return result;
 };
+
+
 
 export const reset = () => ({
   type: ACTION_TYPES.RESET

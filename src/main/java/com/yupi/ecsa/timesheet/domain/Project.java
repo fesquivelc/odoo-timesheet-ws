@@ -45,6 +45,7 @@ public class Project implements Serializable {
                joinColumns = @JoinColumn(name = "projects_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"))
     private Set<User> users = new HashSet<>();
+    // private Long taskCount;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

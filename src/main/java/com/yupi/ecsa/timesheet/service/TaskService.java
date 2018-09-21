@@ -40,4 +40,6 @@ public interface TaskService {
      * @param id the id of the entity
      */
     void delete(Long id);
+
+    Optional<List<Task>> findByProjectAndUserIsCurrentUser(Long projectId);
 }

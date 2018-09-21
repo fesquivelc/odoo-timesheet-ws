@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -101,6 +102,14 @@ public class TimesheetResource {
         log.debug("REST request to get Timesheet : {}", id);
         Optional<Timesheet> timesheet = timesheetService.findOne(id);
         return ResponseUtil.wrapOrNotFound(timesheet);
+    }
+
+    @GetMapping("/timesheets/q/byProject")
+    @Timed
+    public ResponseEntity<List<Timesheet>> getTimesheetByProject(@RequestParam(name = "projectId", defaultValue = "0") Long projectId) {
+        log.debug("REST request to get timesheets for project : {}", projectId);
+        Optional<List<Timesheet>> timesheets = timesheetService.findByProjectAndCurrentUser(projectId);
+        return ResponseEntity.ok(timesheets.orElse(Collections.emptyList()));
     }
 
     /**

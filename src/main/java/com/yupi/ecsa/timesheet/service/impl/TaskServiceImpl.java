@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+
 /**
  * Service Implementation for managing Task.
  */
@@ -35,7 +36,8 @@ public class TaskServiceImpl implements TaskService {
      */
     @Override
     public Task save(Task task) {
-        log.debug("Request to save Task : {}", task);        return taskRepository.save(task);
+        log.debug("Request to save Task : {}", task);
+        return taskRepository.save(task);
     }
 
     /**
@@ -73,5 +75,11 @@ public class TaskServiceImpl implements TaskService {
     public void delete(Long id) {
         log.debug("Request to delete Task : {}", id);
         taskRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<List<Task>> findByProjectAndUserIsCurrentUser(Long projectId) {
+        log.debug("Request for tasks for projectId={}", projectId);
+        return taskRepository.findByProjectAndUserIsCurrentUser(projectId);
     }
 }

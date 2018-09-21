@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -115,5 +116,13 @@ public class TaskResource {
         log.debug("REST request to delete Task : {}", id);
         taskService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/tasks/q/byProject")
+    @Timed
+    public ResponseEntity<List<Task>> getTasksByProject(@RequestParam(name = "projectId", defaultValue = "0") Long projectId) {
+        log.debug("REST request to get Tasks by projectId : {}", projectId);
+        Optional<List<Task>> tasks = taskService.findByProjectAndUserIsCurrentUser(projectId);
+        return ResponseEntity.ok(tasks.orElse(Collections.emptyList()));
     }
 }

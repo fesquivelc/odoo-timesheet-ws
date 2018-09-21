@@ -74,4 +74,10 @@ public class TimesheetServiceImpl implements TimesheetService {
         log.debug("Request to delete Timesheet : {}", id);
         timesheetRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<List<Timesheet>> findByProjectAndCurrentUser(Long projectId){
+        log.debug("Request to get timesheet by projectId: {}",projectId);
+        return timesheetRepository.findByProjectAndCurrentUser(projectId);
+    }
 }

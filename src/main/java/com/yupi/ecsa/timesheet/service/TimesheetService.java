@@ -40,4 +40,6 @@ public interface TimesheetService {
      * @param id the id of the entity
      */
     void delete(Long id);
+
+    Optional<List<Timesheet>> findByProjectAndCurrentUser(Long projectId);
 }

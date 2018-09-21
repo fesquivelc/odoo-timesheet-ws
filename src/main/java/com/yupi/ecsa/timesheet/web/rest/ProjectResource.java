@@ -2,7 +2,9 @@ package com.yupi.ecsa.timesheet.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.yupi.ecsa.timesheet.domain.Project;
+import com.yupi.ecsa.timesheet.domain.Timesheet;
 import com.yupi.ecsa.timesheet.service.ProjectService;
+import com.yupi.ecsa.timesheet.service.TimesheetService;
 import com.yupi.ecsa.timesheet.web.rest.errors.BadRequestAlertException;
 import com.yupi.ecsa.timesheet.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -31,7 +33,10 @@ public class ProjectResource {
 
     private final ProjectService projectService;
 
-    public ProjectResource(ProjectService projectService) {
+    private final TimesheetService timesheetService;
+
+    public ProjectResource(ProjectService projectService, TimesheetService timesheetService) {
+        this.timesheetService = timesheetService;
         this.projectService = projectService;
     }
 
@@ -102,6 +107,14 @@ public class ProjectResource {
         log.debug("REST request to get Project : {}", id);
         Optional<Project> project = projectService.findOne(id);
         return ResponseUtil.wrapOrNotFound(project);
+    }
+
+    @GetMapping("/projects/{id}/timesheets")
+    @Timed
+    public ResponseEntity<List<Timesheet>> getTimesheet(@PathVariable Long id) {
+        log.debug("REST request to get timesheets for project : {}", id);
+        Optional<List<Timesheet>> timesheets = timesheetService.findByProjectAndCurrentUser(id);
+        return ResponseUtil.wrapOrNotFound(timesheets);
     }
 
     /**
