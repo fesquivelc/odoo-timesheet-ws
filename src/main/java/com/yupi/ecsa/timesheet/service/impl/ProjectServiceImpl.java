@@ -2,6 +2,7 @@ package com.yupi.ecsa.timesheet.service.impl;
 
 import com.yupi.ecsa.timesheet.service.ProjectService;
 import com.yupi.ecsa.timesheet.domain.Project;
+import com.yupi.ecsa.timesheet.domain.Task;
 import com.yupi.ecsa.timesheet.repository.ProjectRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +12,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
 /**
  * Service Implementation for managing Project.
  */
@@ -37,7 +39,9 @@ public class ProjectServiceImpl implements ProjectService {
      */
     @Override
     public Project save(Project project) {
-        log.debug("Request to save Project : {}", project);        return projectRepository.save(project);
+        log.debug("Request to save Project : {}", project);
+        project.getTasks().forEach(task -> task.setProject(project));
+        return projectRepository.save(project);
     }
 
     /**
@@ -60,7 +64,6 @@ public class ProjectServiceImpl implements ProjectService {
     public Page<Project> findAllWithEagerRelationships(Pageable pageable) {
         return projectRepository.findAllWithEagerRelationships(pageable);
     }
-    
 
     /**
      * Get one project by id.

@@ -7,7 +7,7 @@ import { ICrudGetAllAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
-import {getEntitiesByProject} from './timesheet.reducer';
+import { getEntitiesByProject } from './timesheet.reducer';
 import { ITimesheet } from 'app/shared/model/timesheet.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';

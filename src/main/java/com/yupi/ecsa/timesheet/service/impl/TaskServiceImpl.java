@@ -62,7 +62,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @Transactional(readOnly = true)
     public Optional<Task> findOne(Long id) {
-        log.debug("Request to get Task : {}", id);
+        log.debug("Request to get Task : {}", id);        
         return taskRepository.findById(id);
     }
 
