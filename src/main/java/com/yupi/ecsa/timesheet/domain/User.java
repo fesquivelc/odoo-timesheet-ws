@@ -5,7 +5,6 @@ import com.yupi.ecsa.timesheet.config.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.ManyToAny;
 
 import javax.validation.constraints.Email;
 
@@ -46,6 +45,10 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Size(min = 60, max = 60)
     @Column(name = "password_hash", length = 60, nullable = false)
     private String password;
+
+    @Size(max = 60)
+    @Column(name = "temp_password", length = 60)
+    private String tempPassword;
 
     @Size(max = 50)
     @Column(name = "first_name", length = 50)
@@ -209,6 +212,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
+    }
+
+    public String getTempPassword() {
+        return this.tempPassword;
+    }
+
+    public void setTempPassword(String tempPassword) {
+        this.tempPassword = tempPassword;
     }
 
     @Override

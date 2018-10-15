@@ -140,8 +140,10 @@ public class UserService {
         } else {
             user.setLangKey(userDTO.getLangKey());
         }
-        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
+        String tempPassword = RandomUtil.generatePassword();
+        String encryptedPassword = passwordEncoder.encode(tempPassword);
         user.setPassword(encryptedPassword);
+        user.setTempPassword(tempPassword);
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(Instant.now());
         user.setActivated(true);
@@ -180,6 +182,12 @@ public class UserService {
                 this.clearUserCaches(user);
                 log.debug("Changed Information for User: {}", user);
             });
+    }
+
+    public Optional<User> getCurrentUser(){
+        return SecurityUtils
+                .getCurrentUserLogin()
+                .flatMap(userRepository::findOneByLogin);
     }
 
     /**

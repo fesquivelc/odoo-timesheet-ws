@@ -157,8 +157,6 @@ export const deleteEntity: ICrudDeleteAction<ITimesheet> = id => async dispatch 
   return result;
 };
 
-
-
 export const reset = () => ({
   type: ACTION_TYPES.RESET
 });

@@ -20,14 +20,14 @@ export const NavDropdown = props => (
 
 export const BrandIcon = props => (
   <div {...props} className="brand-icon">
-    <img src="content/images/logo-jhipster-react.svg" alt="Logo" />
+    <img height={45} src="content/images/ecsa_logo.jpg" alt="Logo" />
   </div>
 );
 
 export const Brand = props => (
   <NavbarBrand tag={Link} to="/" className="brand-logo">
     <BrandIcon />
-    <span className="brand-title">Pruebinha</span>
+    <span className="brand-title">SISP</span>
     <span className="navbar-version">{appConfig.VERSION}</span>
   </NavbarBrand>
 );

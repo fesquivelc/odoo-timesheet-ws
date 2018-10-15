@@ -45,7 +45,7 @@ public class Project implements Serializable {
     private Set<User> users = new HashSet<>();
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Task> tasks = new HashSet();
+    private Set<Task> tasks = new HashSet<>();
     // private Long taskCount;
 
     public Set<Task> getTasks() {

@@ -9,8 +9,9 @@
         <p th:text="#{email.activation.greeting(${user.login})}">
             Dear
         </p>
-        <p th:text="#{email.creation.text1}">
-            Your JHipster account has been created, please click on the URL below to access it:
+        <p>
+            Se le ha creado una cuenta en timesheet con el usuario: <span th:text="${user.login}"></span>
+            con el password temporal: <span th:text="${user.tempPassword}"></span>
         </p>
         <p>
           

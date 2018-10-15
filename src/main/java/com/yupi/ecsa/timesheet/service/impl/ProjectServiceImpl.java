@@ -1,8 +1,9 @@
 package com.yupi.ecsa.timesheet.service.impl;
 
 import com.yupi.ecsa.timesheet.service.ProjectService;
+import com.yupi.ecsa.timesheet.service.UserService;
 import com.yupi.ecsa.timesheet.domain.Project;
-import com.yupi.ecsa.timesheet.domain.Task;
+import com.yupi.ecsa.timesheet.domain.User;
 import com.yupi.ecsa.timesheet.repository.ProjectRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Service Implementation for managing Project.
@@ -26,9 +27,11 @@ public class ProjectServiceImpl implements ProjectService {
     private final Logger log = LoggerFactory.getLogger(ProjectServiceImpl.class);
 
     private final ProjectRepository projectRepository;
+    private final UserService userService;
 
-    public ProjectServiceImpl(ProjectRepository projectRepository) {
+    public ProjectServiceImpl(ProjectRepository projectRepository, UserService userService) {
         this.projectRepository = projectRepository;
+        this.userService = userService;
     }
 
     /**
@@ -40,12 +43,45 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project save(Project project) {
         log.debug("Request to save Project : {}", project);
+        if (project.getId() != null) {
+            // Es un update
+            Optional<Project> opCurrentProject = projectRepository.findById(project.getId());
+            if (opCurrentProject.isPresent()) {
+                Project currentProject = opCurrentProject.get();
+                project.setOdooId(currentProject.getOdooId());
+                project.setActive(currentProject.isActive());
+                if(project.getPartner() == null){
+                    project.setPartner(currentProject.getPartner());
+                }
+                if (project.getName() == null) {
+                    project.setName(currentProject.getName());
+                }
+
+                if (project.getPartner() == null) {
+                    currentProject.setPartner(project.getPartner());
+                }
+
+                if (project.getTasks() == null) {
+                    project.setTasks(currentProject.getTasks());
+                } else {
+                    project.getTasks().addAll(currentProject.getTasks());
+                }
+
+                if (project.getUsers() == null) {
+                    project.setUsers(currentProject.getUsers());
+                } else {
+                    project.getUsers().addAll(currentProject.getUsers());
+                }
+            }
+
+        }
         project.getTasks().forEach(task -> task.setProject(project));
+        project.getUsers().forEach(user -> user.getProjects().add(project));
         return projectRepository.save(project);
     }
 
     /**
-     * Get all the projects.
+     * Get all the projects by user
      *
      * @return the list of entities
      */
@@ -53,7 +89,8 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional(readOnly = true)
     public List<Project> findAll() {
         log.debug("Request to get all Projects");
-        return projectRepository.findAllWithEagerRelationships();
+        Optional<User> user = userService.getCurrentUser();
+        return projectRepository.findAllWithEagerRelationships(user.get());
     }
 
     /**
@@ -62,6 +99,7 @@ public class ProjectServiceImpl implements ProjectService {
      * @return the list of entities
      */
     public Page<Project> findAllWithEagerRelationships(Pageable pageable) {
+
         return projectRepository.findAllWithEagerRelationships(pageable);
     }
 

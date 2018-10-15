@@ -15,4 +15,5 @@
     <include file="config/liquibase/changelog/20180913064234_added_entity_constraints_Task.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180913064235_added_entity_constraints_Timesheet.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <include file="config/liquibase/changelog/20180928162800_add_user_col_temp_password.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
