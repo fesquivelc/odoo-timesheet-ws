@@ -1,5 +1,6 @@
 package com.yupi.ecsa.timesheet.service.impl;
 
+import com.yupi.ecsa.timesheet.security.SecurityUtils;
 import com.yupi.ecsa.timesheet.service.ProjectService;
 import com.yupi.ecsa.timesheet.service.UserService;
 import com.yupi.ecsa.timesheet.domain.Project;
@@ -89,8 +90,9 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional(readOnly = true)
     public List<Project> findAll() {
         log.debug("Request to get all Projects");
+//        Optional<String> login = SecurityUtils.getCurrentUserLogin();
         Optional<User> user = userService.getCurrentUser();
-        return projectRepository.findAllWithEagerRelationships(user.get());
+        return projectRepository.findAllWithEagerRelationships(user.get().getId());
     }
 
     /**

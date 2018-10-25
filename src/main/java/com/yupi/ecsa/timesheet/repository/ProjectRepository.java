@@ -23,8 +23,8 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
         countQuery = "select count(distinct project) from Project project")
     Page<Project> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query(value = "select distinct project from Project project left join fetch project.users where :user in (project.users)")
-    List<Project> findAllWithEagerRelationships(@Param("user") User user);
+    @Query(value = "select distinct project from Project project left join fetch project.users u where :userId = u.id")
+    List<Project> findAllWithEagerRelationships(@Param("userId") Long userId);
 
     @Query(value = "select distinct project from Project project left join fetch project.users")
     List<Project> findAllWithEagerRelationships();
