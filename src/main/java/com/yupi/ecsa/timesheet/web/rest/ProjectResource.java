@@ -74,7 +74,7 @@ public class ProjectResource {
      */
     @PutMapping("/projects")
     @Timed
-    public ResponseEntity<Project> updateProject(@Valid @RequestBody Project project) throws URISyntaxException {
+    public ResponseEntity<Project> updateProject(@RequestBody Project project) throws URISyntaxException {
         log.debug("REST request to update Project : {}", project);
         if (project.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

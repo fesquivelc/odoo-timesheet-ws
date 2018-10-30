@@ -5,6 +5,7 @@ import com.yupi.ecsa.timesheet.TimesheetApp;
 import com.yupi.ecsa.timesheet.domain.Project;
 import com.yupi.ecsa.timesheet.repository.ProjectRepository;
 import com.yupi.ecsa.timesheet.service.ProjectService;
+import com.yupi.ecsa.timesheet.service.TimesheetService;
 import com.yupi.ecsa.timesheet.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -68,6 +69,9 @@ public class ProjectResourceIntTest {
     private ProjectService projectService;
 
     @Autowired
+    private TimesheetService timesheetService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -86,7 +90,7 @@ public class ProjectResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ProjectResource projectResource = new ProjectResource(projectService);
+        final ProjectResource projectResource = new ProjectResource(projectService, timesheetService);
         this.restProjectMockMvc = MockMvcBuilders.standaloneSetup(projectResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -223,7 +227,7 @@ public class ProjectResourceIntTest {
     }
     
     public void getAllProjectsWithEagerRelationshipsIsEnabled() throws Exception {
-        ProjectResource projectResource = new ProjectResource(projectServiceMock);
+        ProjectResource projectResource = new ProjectResource(projectServiceMock, timesheetService);
         when(projectServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         MockMvc restProjectMockMvc = MockMvcBuilders.standaloneSetup(projectResource)
@@ -239,7 +243,7 @@ public class ProjectResourceIntTest {
     }
 
     public void getAllProjectsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        ProjectResource projectResource = new ProjectResource(projectServiceMock);
+        ProjectResource projectResource = new ProjectResource(projectServiceMock, timesheetService);
             when(projectServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
             MockMvc restProjectMockMvc = MockMvcBuilders.standaloneSetup(projectResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)

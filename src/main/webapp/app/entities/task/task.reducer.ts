@@ -1,11 +1,10 @@
 import axios from 'axios';
-import {ICrudGetAction, ICrudPutAction, ICrudDeleteAction, ICrudGetAllAction} from 'react-jhipster';
+import { ICrudGetAction, ICrudPutAction, ICrudDeleteAction, ICrudGetAllAction, IPayload } from 'react-jhipster';
 
-import {cleanEntity} from 'app/shared/util/entity-utils';
-import {REQUEST, SUCCESS, FAILURE} from 'app/shared/reducers/action-type.util';
+import { cleanEntity } from 'app/shared/util/entity-utils';
+import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 
-import {ITask, defaultValue} from 'app/shared/model/task.model';
-import {IPayload} from "react-jhipster/src/type/redux-action.type";
+import { ITask, defaultValue } from 'app/shared/model/task.model';
 
 export type IGetByProjectAction<T> = (projectId?: number) => IPayload<T> | ((dispatch: any) => IPayload<T>);
 

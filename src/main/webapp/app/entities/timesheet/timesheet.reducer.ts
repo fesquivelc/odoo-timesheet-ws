@@ -118,7 +118,7 @@ export const getEntitiesByProject: ICrudGetAction<ITimesheet> = projectId => {
   return {
     type: ACTION_TYPES.FETCH_PROJECT_TIMESHEET_LIST,
     payload: axios.get<ITimesheet>(requestUrl)
-  }
+  };
 };
 
 export const getEntity: ICrudGetAction<ITimesheet> = id => {

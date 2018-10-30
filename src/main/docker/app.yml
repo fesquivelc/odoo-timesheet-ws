@@ -1,7 +1,8 @@
 version: '2'
 services:
     timesheet-app:
-        image: timesheet
+        build: ./Dockerfile
+        image: timesheet:0.1
         environment:
             # - _JAVA_OPTIONS=-Xmx512m -Xms256m
             - SPRING_PROFILES_ACTIVE=prod,swagger
@@ -9,6 +10,10 @@ services:
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
         ports:
             - 8080:8080
+        volumes:
+            - ~/timesheet/config:/home/yupi/config
+        links:
+          - odoo:odoo
     timesheet-postgresql:
         extends:
             file: postgresql.yml

@@ -5,7 +5,6 @@ import { cleanEntity } from 'app/shared/util/entity-utils';
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 
 import { IProject, defaultValue } from 'app/shared/model/project.model';
-import {ITask} from "app/shared/model/task.model";
 
 export const ACTION_TYPES = {
   FETCH_PROJECT_LIST: 'project/FETCH_PROJECT_LIST',
