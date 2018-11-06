@@ -93,7 +93,7 @@ export class TimesheetUpdate extends React.Component<ITimesheetUpdateProps, ITim
                 ) : null}
                 <AvGroup>
                   <Label id="dateLabel" for="date">
-                    Date
+                    Fecha
                   </Label>
                   <AvField
                     id="timesheet-date"
@@ -107,7 +107,7 @@ export class TimesheetUpdate extends React.Component<ITimesheetUpdateProps, ITim
                 </AvGroup>
                 <AvGroup>
                   <Label id="nameLabel" for="name">
-                    Name
+                    Descripción
                   </Label>
                   <AvField
                     id="timesheet-name"
@@ -120,7 +120,7 @@ export class TimesheetUpdate extends React.Component<ITimesheetUpdateProps, ITim
                 </AvGroup>
                 <AvGroup>
                   <Label id="unitAmountLabel" for="unitAmount">
-                    Unit Amount
+                    Minutos de duración
                   </Label>
                   <AvField
                     id="timesheet-unitAmount"
@@ -132,13 +132,13 @@ export class TimesheetUpdate extends React.Component<ITimesheetUpdateProps, ITim
                     }}
                   />
                 </AvGroup>
-                <AvGroup>
+                {/* <AvGroup>
                   <Label id="odooIdLabel" for="odooId">
                     Odoo Id
                   </Label>
                   <AvField id="timesheet-odooId" type="number" className="form-control" name="odooId" />
-                </AvGroup>
-                <AvGroup>
+                </AvGroup> */}
+                {/* <AvGroup>
                   <Label for="user.id">User</Label>
                   <AvInput id="timesheet-user" type="select" className="form-control" name="user.id">
                     <option value="" key="0" />
@@ -150,7 +150,7 @@ export class TimesheetUpdate extends React.Component<ITimesheetUpdateProps, ITim
                         ))
                       : null}
                   </AvInput>
-                </AvGroup>
+                </AvGroup> */}
                 <AvGroup>
                   <Label for="task.id">Task</Label>
                   <AvInput id="timesheet-task" type="select" className="form-control" name="task.id">
@@ -166,11 +166,11 @@ export class TimesheetUpdate extends React.Component<ITimesheetUpdateProps, ITim
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/timesheet" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />&nbsp;
-                  <span className="d-none d-md-inline">Back</span>
+                  <span className="d-none d-md-inline">Atrás</span>
                 </Button>
                 &nbsp;
                 <Button color="primary" id="save-entity" type="submit" disabled={updating}>
-                  <FontAwesomeIcon icon="save" />&nbsp; Save
+                  <FontAwesomeIcon icon="save" />&nbsp; Guardar
                 </Button>
               </AvForm>
             )}
