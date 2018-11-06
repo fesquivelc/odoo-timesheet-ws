@@ -1,5 +1,6 @@
 odoo:
-  url: 'http://127.0.0.1:8069'
-  database: 'ecsa001'
-  username: 'odoo'
-  password: 'odoo'
+  url: 'http://18.224.139.143:8069'
+  database: 'ecsa-dev'
+  userId: 1
+  username: 'admin'
+  password: 'admin'

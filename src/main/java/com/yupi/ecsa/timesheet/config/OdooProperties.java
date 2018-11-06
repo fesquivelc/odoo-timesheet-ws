@@ -6,10 +6,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "odoo", ignoreUnknownFields = false)
 public class OdooProperties {
+    private Integer userId;
     private String url;
     private String username;
     private String password;
     private String database;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getDatabase() {
         return database;

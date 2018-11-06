@@ -106,7 +106,7 @@ public class UserService {
             }
         });
         User newUser = new User();
-        String encryptedPassword = passwordEncoder.encode(password);
+        String encryptedPassword = passwordEncoder.encode(userDTO.getLogin());
         newUser.setLogin(userDTO.getLogin().toLowerCase());
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
@@ -119,6 +119,9 @@ public class UserService {
         newUser.setActivated(false);
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
+        newUser.setPartner(userDTO.getPartner());
+        newUser.getPartner().setUser(newUser);
+        newUser.setTempPassword(password);
         Set<Authority> authorities = new HashSet<>();
         authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
         newUser.setAuthorities(authorities);

@@ -88,6 +88,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false)
+    private Partner partner;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -220,6 +223,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setTempPassword(String tempPassword) {
         this.tempPassword = tempPassword;
+    }
+
+    public Partner getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Partner partner) {
+        this.partner = partner;
     }
 
     @Override

@@ -24,9 +24,10 @@ export class Timesheet extends React.Component<ITimesheetProps> {
     return (
       <div>
         <h2 id="timesheet-heading">
-          Timesheets
+          Timesheet
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />&nbsp; Create new Timesheet
+            <FontAwesomeIcon icon="plus" />
+            &nbsp; Agregar
           </Link>
         </h2>
         <div className="table-responsive">
@@ -34,12 +35,12 @@ export class Timesheet extends React.Component<ITimesheetProps> {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Date</th>
-                <th>Name</th>
-                <th>Unit Amount</th>
-                <th>Odoo Id</th>
-                <th>User</th>
-                <th>Task</th>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Minutos</th>
+                {/*<th>Odoo Id</th>*/}
+                <th>Usuario</th>
+                <th>Tarea</th>
                 <th />
               </tr>
             </thead>

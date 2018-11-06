@@ -11,11 +11,7 @@ services:
         ports:
             - 8080:8080
         volumes:
-#            - ~/timesheet/config:/home/yupi/config
-            - /home/yupi/proyectos/ecsa/timesheet-web/config:/home/yupi/config
-#        links:
-#          - odoo:odoo
-    timesheet-postgresql:
+            - /home/admin/timesheet/config:/home/yupi/config
         extends:
             file: postgresql.yml
             service: timesheet-postgresql

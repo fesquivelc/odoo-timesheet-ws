@@ -1,6 +1,7 @@
 package com.yupi.ecsa.timesheet.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.yupi.ecsa.timesheet.xmlrpc.OdooEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -8,6 +9,8 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -15,7 +18,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "timesheet")
-public class Timesheet implements Serializable {
+public class Timesheet implements Serializable, OdooEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -164,5 +167,17 @@ public class Timesheet implements Serializable {
             ", unitAmount=" + getUnitAmount() +
             ", odooId=" + getOdooId() +
             "}";
+    }
+
+    @Override
+    public HashMap getVals() {
+        return new HashMap() {{
+            put("date", getDate().format(DateTimeFormatter.ISO_DATE));
+            put("name", getName());
+            put("unitAmount", getUnitAmount());
+            put("external_partner_id", getUser().getPartner().getOdooId());
+            put("project_id", getTask().getProject().getOdooId());
+            put("task_id", getTask().getOdooId());
+        }};
     }
 }

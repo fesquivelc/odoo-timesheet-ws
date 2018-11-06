@@ -40,7 +40,7 @@ public class Partner implements Serializable {
     @Column(name = "odoo_id", nullable = false)
     private Long odooId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(unique = true)
     private User user;
 

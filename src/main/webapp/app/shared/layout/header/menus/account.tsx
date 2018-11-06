@@ -8,13 +8,13 @@ import { NavDropdown } from '../header-components';
 const accountMenuItemsAuthenticated = (
   <>
     <DropdownItem tag={Link} to="/account/settings">
-      <FontAwesomeIcon icon="wrench" /> Settings
+      <FontAwesomeIcon icon="wrench" /> Configuración
     </DropdownItem>
     <DropdownItem tag={Link} to="/account/password">
-      <FontAwesomeIcon icon="clock" /> Password
+      <FontAwesomeIcon icon="clock" /> Contraseña
     </DropdownItem>
     <DropdownItem tag={Link} to="/logout">
-      <FontAwesomeIcon icon="sign-out-alt" /> Sign out
+      <FontAwesomeIcon icon="sign-out-alt" /> Cerrar sesión
     </DropdownItem>
   </>
 );
@@ -22,16 +22,16 @@ const accountMenuItemsAuthenticated = (
 const accountMenuItems = (
   <>
     <DropdownItem id="login-item" tag={Link} to="/login">
-      <FontAwesomeIcon icon="sign-in-alt" /> Sign in
+      <FontAwesomeIcon icon="sign-in-alt" /> Iniciar sesión
     </DropdownItem>
-    <DropdownItem tag={Link} to="/register">
-      <FontAwesomeIcon icon="sign-in-alt" /> Register
-    </DropdownItem>
+    {/*<DropdownItem tag={Link} to="/register">*/}
+    {/*<FontAwesomeIcon icon="sign-in-alt" /> Register*/}
+    {/*</DropdownItem>*/}
   </>
 );
 
 export const AccountMenu = ({ isAuthenticated = false }) => (
-  <NavDropdown icon="user" name="Account" id="account-menu">
+  <NavDropdown icon="user" name="Cuenta" id="account-menu">
     {isAuthenticated ? accountMenuItemsAuthenticated : accountMenuItems}
   </NavDropdown>
 );

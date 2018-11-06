@@ -1,6 +1,6 @@
 {
-  "name": "pruebinha",
-  "short_name": "pruebinha",
+  "name": "timesheet-web",
+  "short_name": "timesheet",
   "icons": [
       {
           "src": "./content/images/hipster192.png",

@@ -4,6 +4,7 @@ import com.yupi.ecsa.timesheet.config.Constants;
 
 import com.yupi.ecsa.timesheet.domain.Authority;
 import com.yupi.ecsa.timesheet.domain.User;
+import com.yupi.ecsa.timesheet.web.rest.vm.ExternalPartnerVM;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 /**
  * A DTO representing a user, with his authorities.
  */
-public class UserDTO {
+public class UserDTO extends ExternalPartnerVM {
 
     private Long id;
 
@@ -73,6 +74,7 @@ public class UserDTO {
         this.authorities = user.getAuthorities().stream()
             .map(Authority::getName)
             .collect(Collectors.toSet());
+        this.setPartner(user.getPartner());
     }
 
     public Long getId() {
